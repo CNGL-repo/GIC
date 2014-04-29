@@ -1,0 +1,179 @@
+@prefix : <http://www.w3.org/2005/11/its/rdf#> .
+    @prefix dc: <http://purl.org/dc/elements/1.1/> .
+    @prefix dcterms: <http://purl.org/dc/terms/> .
+    @prefix nif: <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+    @prefix owl: <http://www.w3.org/2002/07/owl#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+   
+   :     a owl:Ontology;
+        dc:rights <http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231>;
+        rdfs:comment """ This is the ITS 2.0 / RDF
+     Ontology version 18 April 2013. The ontology is used within the ITS 2.0 specification, see
+     http://www.w3.org/TR/its20/ It has been produced by the W3C MultilingualWeb-LT working group,
+     see http://www.w3.org/International/multilingualweb/lt/ Please note that this file may change
+     without notice. For updated information, please refer to the latest version of
+     Internationalization Tag Set (ITS) Version 2. specification at http://www.w3.org/TR/its20/ and
+     the MultilingualWeb-LT working group page at
+     http://www.w3.org/International/multilingualweb/lt/"""^^xsd:string .
+   
+   :LocQualityIssue     a owl:Class .
+   
+   :ProvRecord     a owl:Class .
+   
+   :allowedCharacters     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :dir     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :domains     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :externalResourceRef     a owl:ObjectProperty .
+   
+   :hasLocQualityIssue     a owl:ObjectProperty;
+        rdfs:range :LocQualityIssue .
+   
+   :hasProvRecord     a owl:ObjectProperty;
+        rdfs:range :ProvRecord .
+   
+   :id     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :lineBreakType     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :locNote     a owl:DatatypeProperty .
+   
+   :locNoteRef     a owl:ObjectProperty .
+   
+   :locNoteType     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :locQualityIssueComment     a owl:DatatypeProperty;
+        rdfs:domain :LocQualityIssue .
+   
+   :locQualityIssueEnabled     a owl:DatatypeProperty;
+        rdfs:domain :LocQualityIssue;
+        rdfs:range xsd:string .
+   
+   :locQualityIssueProfileRef     a owl:ObjectProperty;
+        rdfs:domain :LocQualityIssue .
+   
+   :locQualityIssueSeverity     a owl:DatatypeProperty;
+        rdfs:domain :LocQualityIssue;
+        rdfs:range xsd:decimal .
+   
+   :locQualityIssueType     a owl:DatatypeProperty;
+        rdfs:domain :LocQualityIssue;
+        rdfs:range xsd:string .
+   
+   :locQualityRatingProfileRef     a owl:ObjectProperty .
+   
+   :locQualityRatingScore     a owl:DatatypeProperty;
+        rdfs:range xsd:decimal .
+   
+   :locQualityRatingScoreThreshold     a owl:DatatypeProperty;
+        rdfs:range xsd:decimal .
+   
+   :locQualityRatingVote     a owl:DatatypeProperty;
+        rdfs:range xsd:integer .
+   
+   :locQualityRatingVoteThreshold     a owl:DatatypeProperty;
+        rdfs:range xsd:integer .
+   
+   :localeFilterList     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :localeFilterType     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :mtConfidence     a owl:DatatypeProperty;
+        rdfs:range xsd:decimal .
+   
+   :mtConfidenceAnnotatorsRef     a owl:ObjectProperty .
+   
+   :org     a owl:DatatypeProperty;
+        rdfs:domain :ProvRecord .
+   
+   :orgRef     a owl:ObjectProperty;
+        rdfs:domain :ProvRecord .
+   
+   :person     a owl:DatatypeProperty;
+        rdfs:domain :ProvRecord .
+   
+   :personRef     a owl:ObjectProperty;
+        rdfs:domain :ProvRecord .
+   
+   :provRef     a owl:ObjectProperty;
+        rdfs:domain :ProvRecord .
+   
+   :revOrg     a owl:DatatypeProperty;
+        rdfs:domain :ProvRecord .
+   
+   :revOrgRef     a owl:ObjectProperty;
+        rdfs:domain :ProvRecord .
+   
+   :revPerson     a owl:DatatypeProperty;
+        rdfs:domain :ProvRecord .
+   
+   :revPersonRef     a owl:ObjectProperty;
+        rdfs:domain :ProvRecord .
+   
+   :revTool     a owl:DatatypeProperty;
+        rdfs:domain :ProvRecord .
+   
+   :revToolRef     a owl:ObjectProperty;
+        rdfs:domain :ProvRecord .
+   
+   :space     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :storageEncoding     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :storageSize     a owl:DatatypeProperty;
+        rdfs:range xsd:nonNegativeInteger .
+   
+   :taAnnotatorsRef     a owl:ObjectProperty .
+   
+   :taClassRef     a owl:ObjectProperty .
+   
+   :taConfidence     a owl:DatatypeProperty;
+        rdfs:range xsd:decimal .
+   
+   :taIdent     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :taIdentRef     a owl:ObjectProperty .
+   
+   :taPropRef     a owl:ObjectProperty .
+   
+   :taSource     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :target     a owl:DatatypeProperty .
+   
+   :term     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :termAnnotatorsRef     a owl:ObjectProperty .
+   
+   :termConfidence     a owl:DatatypeProperty;
+        rdfs:range xsd:decimal .
+   
+   :termInfoRef     a owl:ObjectProperty .
+   
+   :tool     a owl:DatatypeProperty;
+        rdfs:domain :ProvRecord .
+   
+   :toolRef     a owl:ObjectProperty;
+        rdfs:domain :ProvRecord .
+   
+   :translate     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
+   
+   :withinText     a owl:DatatypeProperty;
+        rdfs:range xsd:string .
