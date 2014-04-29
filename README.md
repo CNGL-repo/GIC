@@ -3,7 +3,7 @@ GIC
 
 There are a total of 3 folders in this repo:
 
-1. GIC Model - This contains the Generic (upper) model which is not allowed to be expanded and changed and is Generic enough to be defined for multiple different types off scenarios. The Domain (lower) model should allow for easy expansion of the GIC model into different domains.
+1. GIC Model - This contains the Generic (upper) model which is not allowed to be expanded and changed and is Generic enough to be defined for multiple different types of scenarios. The Domain (lower) model should allow for easy expansion of the GIC model into different domains.
 2. FALCON Model - This contains the ITS-RDF and Linport turtle files. Please note that the Falcon model ties in with some aspects in the Generic (upper) model in the GIC model folder.
 3. CNGL Model -  This will contain the models for furture domain expansions to GIC
 
