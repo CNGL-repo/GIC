@@ -18,6 +18,7 @@
    dc:date "2014-03-25";
    dc:creator "David Lewis";
    dc:creator "Leroy Finn";
+   prov:derivedFrom "http://wwww.ttt.org/specs/";
    dc:rights "The ontology license is to be confirmed but a Creative Commons Attribution License - http://creativecommons.org/licenses/by/3.0 is being considered.";
    dc:description "Translation parameters are factors relevant to translation projects. A structured set of 21 parameters has been developed to aid in describing and organizing a translation project. Each of these parameters should be given a value, called a specification, before the production phase of a translation project begins. In some cases, a specification will be flexible, for example, 'workplace to be determined by the translation service provider'. In other cases, a specification will be rigid, for example, 'translate into French tailored to the Quebec region of Canada'. The approach described here namely, using predetermined and hierarchical parameters and corresponding project-specific values results in structured specifications.".
 
