@@ -1,0 +1,204 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix gic:  <http://www.cngl.ie/ontologies/gic#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#>.  
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix str: <http://nlp2rdf.lod2.eu/schema/str> .
+@prefix sioc: <http://rdfs.org/sioc/ns#> .
+@prefix nif: <http://persistance.uni-leipzig.org/nlp2rdf/ontologies/nif-core#> .
+@prefix sso: <http://nlp2rdf.lod2.eu/schema/sso#> .
+@prefix its: <http://www.w3.org/International/multilingualweb/lt#> .
+
+#      The Global Intelligent Content Semantic Model Specification - Generic (Upper) Part
+
+# Some basic meta-data about the vocabulary
+<http://www.cngl.ie/ontologies/gic#> a owl:Ontology;   
+   dc:title "Global Intelligent Content Semantic Model - Generic Part"; 
+   rdfs:label "Global Intelligent Content Semantic Model - Generic Part" ;
+   rdfs:comment "The model is expressed in OWL2-RL encoded as Turtle/RDF with embedded definitions describing the concepts and relationships that make up the model. ";
+   owl:versionIRI <http://www.cngl.ie/ontologies/gic/0.3.0#>;  
+   owl:versionInfo "0.3.0";     
+   dc:date "2014-05-01";
+   dc:creator "Rob Brennan" ;
+   dc:creator "David Lewis";
+   dc:contributor "Alan Meehan";
+   dc:contributor "Eamonn Kenny";
+   dc:contributor "Ergun Bicici";
+   dc:contributor "Erwin Moreau";
+   dc:contributor "Leroy Finn";
+   dc:contributor "Joachim Wagner";
+   dc:contributor "Joao Cabral";
+   dc:contributor "Martin Emms";
+   dc:contributor "Melike Sah";
+   dc:contributor "M. Rami Ghorab";
+   dc:contributor "Nick Campbell";
+   dc:contributor "Qun Liu";
+   dc:contributor "Xiaofeng Wu";
+   dc:contributor "Xiaojun Zhang";
+   dc:rights "The ontology license is the Creative Commons Attribution License - http://creativecommons.org/licenses/by/3.0 .";
+
+   dc:description "This semantic model is designed to address the content processing interoperability problems of enterprises operating in content value chains that target global markets and aspire to personalised, interactive content delivery. The specific interoperability problems addressed are: (1) To enable organisations with content processing operations to dynamically and adaptively react to rapidly changing external context and consumer needs. (2) To address existing problems of cost, complexity and inflexibility in current content production, delivery and management processes. (3) To enable organisational decision-makers to dynamically and cheaply configure content processing chains to their changing needs, where the components, services and users that make up these chains may operate and/or have been developed in separate, independent organisations.
+
+The semantic model should exhibit the following characteristics:
+(a) It should be deterministically mapped into all the relevant Interoperability Models used by content processing components envisaged for Global Intelligent Content. By Interoperability Model refer to any interoperability specification subject to consensus agreement by a community of potential implementers and defined and maintained by an organisation representing that community.
+(b) It should enable to reliable and consistent exchange of relevant meta-data between content processing components across any portion of a content processing chain.
+(c) It should enable the dynamic assembly of a coherent end-to-end model of operations that enables the performance of the end-to-end processing chain in delivering the intended business goals (including the individual role played in that by individual components) to be monitored and analysed.  
+(d) It should be minimal, i.e. it should only capture concepts and relationships that are necessary for supporting interoperability across the breadth of content processing chains and between components envisaged for Global Intelligent Content.
+(e) It should, where possible, reuse existing concepts, concept relationship and concept attributes." .
+
+
+#Change Log
+# v0.3.0 split into upper (generic) and lower (domain-specific) models
+# v2.0.0 move to OWL2-RL to support log service use cases
+
+# Upper (Generic) Model
+
+# Classes
+
+gic:Resource a owl:Class;
+    rdfs:subClassOf prov:Entity;
+    rdfs:label "Resource";
+    rdfs:comment "A global intelligent content resource. Something that can be identified by a URI." .
+
+gic:InformationResource a owl:Class;
+    rdfs:subClassOf gic:Resource;
+    rdfs:label "InformationResource";
+    rdfs:comment "Something that can be identified by a URI and which can be entirely transmitted in electronic form, such as a document." .
+#v2.0.0 fixed lack of sublclassing from gic:Resource
+
+gic:Service a owl:Class;
+    rdfs:subClassOf gic:Resource;
+    rdfs:label "Service";
+    rdfs:comment "A mechanism to enable access to one or more capabilities, where the access is provided using a prescribed interface and is exercised consistent with constraints and policies as specified by the service description (OASIS)." .
+
+gic:Content a owl:Class;
+    rdfs:subClassOf gic:InformationResource;
+    rdfs:subClassOf cnt:Content;
+    rdfs:label "Content" ;
+    rdfs:comment "A Resource created by an agent with the purpose of it being consumed by people. May overlap with data.".
+# v2.0.0 changed definition to allow creation by an agent instead of just a person
+
+gic:Data a owl:Class;
+    rdfs:subClassOf gic:InformationResource;
+    rdfs:label "Data" ;
+    rdfs:comment "The quantities, characters, or symbols on which operations are performed by services or components for the purpose of content processing. May overlap with content." .
+
+
+gic:Policy a owl:Class;
+    rdfs:subClassOf gic:Data;
+    rdfs:label "Policy" ;
+    rdfs:comment "Policies are operating rules that can be referred to as a way to maintain system order, security, consistency, or otherwise for a goal or use case. They are often expressed as Event-Condition-Action rules." .
+#v2.0.0 new in this version
+
+gic:Mapping a owl:Class;
+    rdfs:subClassOf gic:Data;
+    rdfs:label "Mapping" ;
+    rdfs:comment "A set of verified correspondences between formal models to enable interoperability. For example a set of correspondences between a GLOBIC model of content and associated meta-data and an XLIFF/ITS2.0 representation of the same content and meta-data." .
+#v2.0.0 new in this version
+
+
+
+# Resource Properties
+
+gic:identifiedBy a owl:DatatypeProperty;
+    rdfs:label "identifiedBy";
+    rdfs:domain gic:Resource;
+    rdfs:range xsd:anyURI;
+    rdfs:comment "A relationship between a resource and a URI used to indentify it." .
+
+gic:domain a owl:DatatypeProperty;
+    rdfs:label "domain";
+    rdfs:domain gic:Resource;
+    rdfs:range xsd:string;
+    rdfs:comment "An unstructured description of the problem or knowledge domain of a gic:Resource." .
+
+gic:refersTo a owl:ObjectProperty;
+    rdfs:label "refersTo";
+    rdfs:domain gic:Resource;
+    rdfs:range gic:Resource;
+    rdfs:comment "A relationship between two resources. The exact nature of the relationship is undefined it could be composition or reference by URI, or something else. ".
+
+gic:annotatedBy a owl:ObjectProperty;
+    rdfs:subPropertyOf gic:refersTo;
+    rdfs:label "annotatedBy";
+    rdfs:range gic:InformationResource;
+    rdfs:domain gic:Resource;
+    rdfs:comment "An annotation is a type of refersTo relationship between Resources and Information Resources.".
+#v2.0.0 added gic:Resource as domain
+
+gic:hasRepresentation a owl:ObjectProperty;
+    rdfs:subPropertyOf gic:refersTo;
+    rdfs:label "hasRepresentation";
+    rdfs:domain gic:Mapping;
+    rdfs:comment "Each mapping may have multiple represetations such as a SPARQLCONSTRUCT query or an Align API file.".
+#v2.0.0 added in this version
+
+
+# Connecting Upper Model with Prov Model
+
+# Classes
+
+gic:ContentProcessingActivity a owl:Class;
+    rdfs:subClassOf prov:Activity;	
+    rdfs:label "ContentProcessingActivity";
+    rdfs:comment "Any activity that involves processing of content, so it both uses Information Resources and Information Resources are generated by it. More specifically the activity involves the use of a Service that is offered by the Content Processing Component.".
+
+
+	
+gic:ComponentGenerationActivity a owl:Class;
+    rdfs:subClassOf prov:Activity;	
+    rdfs:label "ComponentGenerationActivity";
+    rdfs:comment "This activity is associated with a specialised Agent called a Component Factory and uses Information Resources (typically training corpora) to generate Content Processing Components.".
+
+gic:ContentProcessingComponent a owl:Class;
+    rdfs:subClassOf prov:Agent;
+    rdfs:subClassOf gic:Resource;
+    rdfs:label "ContentProcessingComponent";
+    rdfs:comment "A Content Processing Component is a system that adds value to Global Intelligent Content or that allows other content processing components to improve the value they provide. It may consist of human elements, automated elements and/or other Content Processing Components in any combination." .
+#v2.0.0 made subclass of gic:Resource
+
+gic:ComponentFactory a owl:Class;
+    rdfs:subClassOf prov:Agent;
+        rdfs:subClassOf gic:Resource;
+	rdfs:label "ComponentFactory";
+	rdfs:comment "A specialised Agent that uses Information Resources (typically training corpora) to generate Content Processing Components.".
+#v2.0.0 made subclass of gic:Resource
+
+# Properties
+
+gic:usedService a owl:ObjectProperty;
+    rdfs:subPropertyOf prov:used;
+	rdfs:domain gic:ContentProcessingActivity;
+	rdfs:range gic:Service;
+	rdfs:label "usedService";
+	rdfs:comment "Use of a service offered by a Content Processing Component.".
+#v2.0.0 added range
+
+gic:offerBy a owl:ObjectProperty;
+    rdfs:subPropertyOf prov:wasAttributedTo;
+	rdfs:domain gic:Service;
+	rdfs:range gic:ContentProcessingComponent;
+	rdfs:label "offeredBy";
+	rdfs:comment "Relation between a Content Processing Component and the service it offers.".
+#v2.0.0 added domain
+
+gic:contentConsumed a owl:ObjectProperty;
+    rdfs:subPropertyOf  prov:Used ;
+    rdfs:domain  gic:ContentProcessingActivity ;
+    rdfs:range  gic:InformationResource ;
+    rdfs:label "contentConsumed";
+    rdfs:comment "A relation between a content processing activity and the content types it consumes." .
+
+
+gic:contentGenerated  a owl:ObjectProperty;
+    rdfs:subPropertyOf  prov:wasDerivedBy ;
+    rdfs:domain  gic:InformationResource ;
+    rdfs:range  gic:ContentProcessingActivity  ;
+    rdfs:label "contentGenerated";
+    rdfs:comment "A relation between a content processing activity and the content types it generates." .
+
+
+
